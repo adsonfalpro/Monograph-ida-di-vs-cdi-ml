@@ -1,0 +1,123 @@
+[
+  {
+    "model": "perceptron_seed42",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:00"
+  },
+  {
+    "model": "rf_seed42",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:00"
+  },
+  {
+    "model": "rf_seed43",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:01"
+  },
+  {
+    "model": "rf_seed44",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:01"
+  },
+  {
+    "model": "rf_seed45",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:01"
+  },
+  {
+    "model": "rf_seed46",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:02"
+  },
+  {
+    "model": "lstm_seed42",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:02"
+  },
+  {
+    "model": "lstm_seed43",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:08"
+  },
+  {
+    "model": "lstm_seed44",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:09"
+  },
+  {
+    "model": "lstm_seed45",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:09"
+  },
+  {
+    "model": "lstm_seed46",
+    "frozen_config": {
+      "frozen_sha256": "85eb81f3f4a908a21133f6ec43e6ddf422bea2cb468eab4c47d2e912aa4d04ea",
+      "primary": {
+        "procedure": "crossfit",
+        "threshold_rule": "f1"
+      }
+    },
+    "released_at": "2026-11-22T03:01:10"
+  }
+]

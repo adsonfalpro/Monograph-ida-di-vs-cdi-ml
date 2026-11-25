@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Se usar este material, cite-o como abaixo."
+title: "Modelos de machine learning para previsão de retornos do IDA-DI abaixo do CDI"
+type: software
+authors:
+  - family-names: "Falcão"
+    given-names: "Adson Protázio"
+license: MIT
+date-released: 2026-01-01
+abstract: "Implementação reproduzível e avaliação revisada do experimento da monografia de especialização em Engenharia Financeira (Escola Politécnica da USP)."

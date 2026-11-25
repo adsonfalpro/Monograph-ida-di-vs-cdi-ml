@@ -1,0 +1,112 @@
+{
+ "rows": [
+  {
+   "modelo": "Random Forest",
+   "metrica": "F1",
+   "monografia": 0.562,
+   "reproduzido": 0.5346387342390835,
+   "sementes": 5
+  },
+  {
+   "modelo": "Random Forest",
+   "metrica": "AUC",
+   "monografia": 0.737,
+   "reproduzido": 0.757309061625837,
+   "sementes": 5
+  },
+  {
+   "modelo": "Random Forest",
+   "metrica": "Brier",
+   "monografia": 0.175,
+   "reproduzido": 0.1773617468320196,
+   "sementes": 5
+  },
+  {
+   "modelo": "Random Forest",
+   "metrica": "Limiar F1",
+   "monografia": 0.237,
+   "reproduzido": 0.24926716996287152,
+   "sementes": 5
+  },
+  {
+   "modelo": "LSTM",
+   "metrica": "F1",
+   "monografia": 0.389,
+   "reproduzido": 0.528232538734294,
+   "sementes": 3
+  },
+  {
+   "modelo": "LSTM",
+   "metrica": "AUC",
+   "monografia": 0.81,
+   "reproduzido": 0.7775658594934683,
+   "sementes": 3
+  },
+  {
+   "modelo": "LSTM",
+   "metrica": "Brier",
+   "monografia": 0.198,
+   "reproduzido": 0.1816516469061723,
+   "sementes": 3
+  },
+  {
+   "modelo": "LSTM",
+   "metrica": "Limiar F1",
+   "monografia": 0.269,
+   "reproduzido": 0.30361930801761594,
+   "sementes": 3
+  },
+  {
+   "modelo": "Perceptron",
+   "metrica": "Precisão",
+   "monografia": 0.558,
+   "reproduzido": 0.4375,
+   "sementes": 1
+  },
+  {
+   "modelo": "Perceptron",
+   "metrica": "Recall",
+   "monografia": 0.446,
+   "reproduzido": 0.50199203187251,
+   "sementes": 1
+  },
+  {
+   "modelo": "Perceptron",
+   "metrica": "F1",
+   "monografia": 0.496,
+   "reproduzido": 0.4675324675324675,
+   "sementes": 1
+  },
+  {
+   "modelo": "Perceptron",
+   "metrica": "Positivos no teste",
+   "monografia": 314,
+   "reproduzido": 251,
+   "sementes": 1
+  },
+  {
+   "modelo": "Random Forest",
+   "metrica": "Positivos no teste",
+   "monografia": 251,
+   "reproduzido": 251,
+   "sementes": 5
+  },
+  {
+   "modelo": "LSTM",
+   "metrica": "Positivos no teste",
+   "monografia": 251,
+   "reproduzido": 251,
+   "sementes": 3
+  }
+ ],
+ "meta": [
+  {
+   "label": "Gerado por",
+   "value": "src/evaluation/ablation.py, passo S0 (código original literal)"
+  },
+  {
+   "label": "Valores da monografia",
+   "value": "Figuras e tabelas do PDF (RF: Fig. 6.x; LSTM: Fig. 5.x; Perceptron: Fig. 4.1)"
+  }
+ ]
+}

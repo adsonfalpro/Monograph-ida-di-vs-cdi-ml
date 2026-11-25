@@ -1,0 +1,6 @@
+{
+ "prevalence": 0.20736196319018405,
+ "brier_constant_prevalence": 0.1643629794120968,
+ "f1_always_alert": 0.3434959349593496,
+ "precision_always_alert": 0.20736196319018405
+}

@@ -1,0 +1,326 @@
+<meta name="dash-one-writer">
+<style>
+  .rm { font-family: var(--font-anthropic-sans); color: var(--color-fg); line-height: 1.5; max-width: 980px; }
+  .rm h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0 0 var(--cds-gap-sm); text-wrap: balance; }
+  .rm h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: var(--cds-gap-xl) 0 var(--cds-gap-sm); text-wrap: balance; }
+  .rm p { margin: 0 0 var(--cds-gap-sm); max-width: 68ch; }
+  .rm .rm-lead { font-size: var(--cds-font-size-heading); line-height: 1.4; max-width: 62ch; }
+  .rm .rm-muted { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .rm-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--cds-gap-md); margin: var(--cds-gap-md) 0; min-height: 120px; }
+  .rm-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+  .rm-card .rm-name { display: flex; align-items: center; gap: 8px; font-weight: var(--cds-font-weight-medium); }
+  .rm-card .rm-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+  .rm-card .rm-big { font-family: var(--font-anthropic-serif); font-size: 36px; line-height: 1.1; margin: 6px 0 2px; font-variant-numeric: tabular-nums; }
+  .rm-card .rm-ic { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .rm-chart { width: 100%; min-height: 120px; }
+  .rm-chart svg { display: block; max-width: 100%; }
+  .rm-chart svg text { fill: var(--cds-text-secondary); font-size: 11px; font-family: var(--font-anthropic-sans); }
+  .rm-panels { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); }
+  .rm-tablewrap { overflow-x: auto; }
+  .rm table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .rm th, .rm td { text-align: right; padding: 6px 10px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .rm th:first-child, .rm td:first-child, .rm th:nth-child(2), .rm td:nth-child(2) { text-align: left; }
+  .rm th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+  .rm ul { margin: 0 0 var(--cds-gap-sm); padding-left: 1.2em; max-width: 68ch; }
+  .rm li { margin-bottom: 4px; }
+  .rm-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--cds-gap-md); margin: var(--cds-gap-md) 0; }
+  .rm-figs figure { margin: 0; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md); min-width: 0; }
+  .rm-figs img { width: 100%; height: auto; display: block; border-radius: 4px; background: #fcfcfb; }
+  .rm-figs figcaption { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin-top: 6px; }
+  .rm-err { color: var(--color-bad); font-size: var(--cds-font-size-caption); }
+  .rm-callout { border-left: 3px solid var(--color-warn); padding: 4px 12px; background: var(--color-panel); border-radius: 0 var(--cds-radius) var(--cds-radius) 0; margin: var(--cds-gap-md) 0; max-width: 68ch; }
+  @media print { .rm-figs { grid-template-columns: 1fr 1fr; } }
+</style>
+
+<div class="rm">
+  <h1 id="titulo">Resultados da Monografia</h1>
+  <p class="rm-lead" id="resumo">No teste, o AUC do Random Forest é <b data-draw="auc_rf">—</b> e o do LSTM é <b data-draw="auc_lstm">—</b>, contra 0,50 de um acaso.
+    <span data-verdict="a" hidden>O intervalo de confiança inclui 0,50 nos três modelos: com o alvo e o método corrigidos, não há evidência de que algum deles preveja melhor que o acaso.</span>
+    <span data-verdict="b" hidden>Pelo menos um dos intervalos de confiança fica fora de 0,50; veja os cartões abaixo.</span></p>
+  <p class="rm-muted">Previsão, com até 10 dias de antecedência, de o IDA‑DI render menos que o CDI. Perceptron, Random Forest e LSTM, reconstruídos sem vazamento de dados e comparados com o que a monografia publicou.</p>
+
+  <h2 id="resultado">Resultado no teste, pipeline corrigido</h2>
+  <div class="rm-cards" data-draw="cards" data-source="ci_metrics">—</div>
+  <p class="rm-muted">AUC com intervalo de confiança de 95 % (bootstrap em blocos de 20 dias, mesmas datas para todas as sementes). Random Forest e LSTM: média de cinco sementes. Perceptron: uma execução.</p>
+
+  <div class="rm-chart" data-draw="chart_ci" data-source="ci_metrics" id="grafico-ic">—</div>
+  <p class="rm-muted">Pontos: média entre sementes; barras: intervalo de 95 %. Linha tracejada: referência (acaso no AUC; previsão constante da prevalência no Brier; alertar todo dia no F1). Brier: menor é melhor.</p>
+
+  <h2 id="decomposicao">De onde vem a diferença para a monografia</h2>
+  <p>Partindo do código original, cada passo acrescenta uma correção. O AUC cai quando o alvo formal substitui o original, e as correções seguintes quase não o movem.</p>
+  <div class="rm-chart" data-draw="chart_steps" data-source="ablation" id="grafico-passos">—</div>
+  <p class="rm-muted">S0 original · S1 + alvo formal · S2 + scaler ajustado só no treino · S3 + variáveis sem preenchimento com zero · S4 + purge nas fronteiras · S5 + calibração e limiar por validação cruzada. Pontos: média das sementes; barras: ± 1 desvio‑padrão entre sementes (RF: 5; LSTM: 3; Perceptron: 1).</p>
+
+  <h2 id="alvo">O alvo original compartilhava dias com as variáveis</h2>
+  <p>O alvo da monografia marcava 1 se qualquer uma das 10 janelas deslizantes seguintes fosse negativa, e 9 dos 10 dias de cada janela já estavam na entrada do modelo. O alvo formal olha só os 10 dias seguintes.</p>
+  <div class="rm-chart" data-draw="chart_prev" data-source="prevalence" id="grafico-alvo">—</div>
+  <p class="rm-muted">Participação de positivos em cada conjunto (divisão 60/20/20 de referência), com cada definição de alvo.</p>
+
+  <h2 id="reproducao">O que da monografia foi reproduzido</h2>
+  <p>O passo S0 roda o código original sobre os mesmos dados. Valores da monografia vêm das figuras do PDF.</p>
+  <div class="rm-tablewrap">
+    <table data-source="recon" data-row-key="modelo,metrica">
+      <thead><tr><th data-field="modelo">Modelo</th><th data-field="metrica">Métrica</th><th data-field="monografia">Monografia</th><th data-field="reproduzido">Reproduzido (S0)</th><th data-field="sementes">Sementes</th></tr></thead>
+      <tbody data-draw="recon_body"></tbody>
+    </table>
+  </div>
+  <ul>
+    <li>Random Forest: reproduzido aproximadamente; as diferenças cabem na versão das bibliotecas e na base original, que não temos.</li>
+    <li>LSTM: o valor publicado é uma única execução, sem semente nem versão registradas; aqui o resultado varia entre sementes.</li>
+    <li>Perceptron: a figura publicada tem mais positivos no teste do que qualquer variante do código gera. A origem fica registrada como desconhecida.</li>
+  </ul>
+
+  <h2 id="divisao">Divisão temporal sem vazamento</h2>
+  <div class="rm-tablewrap">
+    <table data-source="split" data-row-key="bloco">
+      <thead><tr><th data-field="bloco">Bloco</th><th data-field="n">Amostras</th><th data-field="primeira_decisao">Primeira decisão</th><th data-field="ultima_decisao">Última decisão</th><th data-field="positivos">Positivos</th><th data-field="taxa">Taxa</th></tr></thead>
+      <tbody data-draw="split_body"></tbody>
+    </table>
+  </div>
+  <p class="rm-muted">Divisão cronológica, sem embaralhar. O purge remove amostras cujo alvo usa dias do bloco seguinte. O teste só foi aberto depois de congelar modelos, calibradores e limiares, uma vez por modelo e semente.</p>
+
+  <h2 id="figuras">Figuras do teste</h2>
+  <div class="rm-figs">
+    <figure><img src="/_blob/7670813f08356e1753133b7559bdd809" alt="Matrizes de confusão no teste para Perceptron, Random Forest e LSTM"><figcaption>Matrizes de confusão (semente 42). Em cima, a regra principal; embaixo, o estilo original. A regra principal alerta todos os dias no RF e no LSTM.</figcaption></figure>
+    <figure><img src="/_blob/55ff3f9fc9d865470a99bcff4f91cc9f" alt="Curvas ROC no teste, uma linha por semente"><figcaption>Curvas ROC, uma linha por semente.</figcaption></figure>
+    <figure><img src="/_blob/0973b712521aa7b9cd60c2e7198c67c0" alt="Curvas de calibração no teste"><figcaption>Calibração no teste, uma linha por semente.</figcaption></figure>
+  </div>
+
+  <h2 id="correcoes">O que foi corrigido</h2>
+  <ul>
+    <li><b>Dados:</b> BOVA em texto em parte de 2009, IPCA em % e as demais séries em decimal, coluna CDI de 20 dias calculada com janela errada e CDI dividido por 100 no código.</li>
+    <li><b>Alvo:</b> definição formal do retorno dos 10 dias seguintes, no lugar do máximo de janelas retroativas.</li>
+    <li><b>Variáveis:</b> sem preenchimento com zero; padronização ajustada só com o treino.</li>
+    <li><b>Divisão:</b> cronológica, com purge, e teste protegido por registro de acesso.</li>
+    <li><b>Calibração e limiar:</b> validação cruzada em blocos, em vez de calibrar e escolher o limiar nos mesmos dados.</li>
+  </ul>
+
+  <h2 id="conclusao">Conclusão e limites</h2>
+  <div class="rm-callout"><p>Com os dados e o método corrigidos, os três modelos não se distinguem do acaso no teste. Isso é ausência de evidência, não prova de que não funcionem: o teste tem poucos eventos e as janelas são muito autocorrelacionadas.</p></div>
+  <ul>
+    <li>Uma única divisão cronológica; a taxa de eventos muda muito entre treino, validação e teste.</li>
+    <li>O CDI diário da base não pôde ser conferido contra uma fonte oficial.</li>
+    <li>O resultado do LSTM da monografia só é reproduzido de forma qualitativa.</li>
+    <li>Falta a Fase 9: backtest das estratégias, só no período de teste, com custos explícitos.</li>
+  </ul>
+  <p class="rm-muted">Código, testes e relatórios completos estão na pasta credit-market-machine-learning do projeto.</p>
+</div>
+
+<script>
+(function () {
+  const MODELS = ['Perceptron', 'Random Forest', 'LSTM'];
+  const pt = (x, d) => (x == null ? '—' : d3.format('.' + (d == null ? 2 : d) + 'f')(x).replace('.', ','));
+  const pct = (x) => d3.format('.1%')(x).replace('.', ',');
+  const enc = (s) => String(s).replace(/%/g, '%25').replace(/&/g, '%26').replace(/=/g, '%3D');
+  const ok = (id) => { const g = dash.data(id); return g.status === 'ok' && g.data.length ? g.data : null; };
+  const fail = (el, id) => {
+    const g = dash.data(id);
+    el.replaceChildren();
+    const m = document.createElement('div');
+    m.className = g.status === 'error' || g.status === 'missing' ? 'rm-err' : 'rm-muted';
+    m.textContent = g.status === 'error' || g.status === 'missing' ? 'Não foi possível carregar estes dados.' : '—';
+    el.appendChild(m);
+  };
+  const mark = (node, id, field, where) => {
+    node.setAttribute('data-source', id);
+    node.setAttribute('data-field', field);
+    if (where) node.setAttribute('data-where', where);
+    return node;
+  };
+  const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+  const svgEl = (parent, tag, attrs) => { const n = document.createElementNS('http://www.w3.org/2000/svg', tag); for (const k in attrs) n.setAttribute(k, attrs[k]); parent.appendChild(n); return n; };
+  const row = (rows, m, k) => rows.find((r) => r.modelo === m && r.metrica === k);
+  const colorOf = (i) => dash.colors[i % dash.colors.length];
+
+  // ---------- frase de abertura
+  ['rf', 'lstm'].forEach((k) => {
+    const name = k === 'rf' ? 'Random Forest' : 'LSTM';
+    dash.draw('auc_' + k, (n) => {
+      const d = ok('ci_metrics');
+      if (!d) { n.textContent = '—'; return; }
+      const r = row(d, name, 'auc');
+      n.textContent = pt(r.ponto);
+      mark(n, 'ci_metrics', 'ponto', 'modelo=' + enc(name) + '&metrica=auc');
+    });
+  });
+  dash.onData(() => {
+    const d = ok('ci_metrics');
+    const a = document.querySelector('[data-verdict="a"]');
+    const b = document.querySelector('[data-verdict="b"]');
+    if (!a || !b || !d) return;
+    const aucs = MODELS.map((m) => row(d, m, 'auc')).filter(Boolean);
+    const all = aucs.length === 3 && aucs.every((r) => r.ic_baixo <= 0.5 && r.ic_alto >= 0.5);
+    a.hidden = !all;
+    b.hidden = all;
+  });
+
+  // ---------- cartões
+  dash.draw('cards', (box) => {
+    const d = ok('ci_metrics');
+    if (!d) return fail(box, 'ci_metrics');
+    box.replaceChildren(...MODELS.map((m, i) => {
+      const r = row(d, m, 'auc');
+      const w = 'modelo=' + enc(m) + '&metrica=auc';
+      const card = el('div', 'rm-card');
+      const name = el('div', 'rm-name');
+      const dot = el('span', 'rm-dot'); dot.style.background = colorOf(i);
+      name.append(dot, el('span', null, m));
+      const big = mark(el('div', 'rm-big', pt(r.ponto)), 'ci_metrics', 'ponto', w);
+      const ic = el('div', 'rm-ic');
+      ic.append('AUC · IC 95 % [', mark(el('span', null, pt(r.ic_baixo)), 'ci_metrics', 'ic_baixo', w), '; ',
+        mark(el('span', null, pt(r.ic_alto)), 'ci_metrics', 'ic_alto', w), ']');
+      card.append(name, big, ic);
+      return card;
+    }));
+  });
+
+  // ---------- AUC / Brier / F1 com IC
+  dash.draw('chart_ci', (box) => {
+    const d = ok('ci_metrics');
+    if (!d) return fail(box, 'ci_metrics');
+    const W = Math.max(260, box.clientWidth);
+    const three = W >= 640;
+    const pw = three ? Math.floor((W - 32) / 3) : W;
+    const panels = [['auc', 'AUC', 'acaso'], ['brier', 'Brier', 'prevalência'], ['f1', 'F1 da regra principal', 'alertar sempre']];
+    const wrap = el('div', 'rm-panels');
+    const legend = el('div', 'rm-muted');
+    MODELS.forEach((m, i) => {
+      const s = el('span', null, m);
+      s.style.marginRight = '14px';
+      const dot = el('span', 'rm-dot'); dot.style.cssText = 'display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:' + colorOf(i);
+      s.prepend(dot);
+      legend.append(s);
+    });
+    box.replaceChildren(legend, wrap);
+    panels.forEach(([k, title, refWord]) => {
+      const rows = MODELS.map((m) => row(d, m, k));
+      const ref = row(d, 'Referência', k);
+      const lo = Math.min(...rows.map((r) => r.ic_baixo), ref.ponto), hi = Math.max(...rows.map((r) => r.ic_alto), ref.ponto);
+      const pad = (hi - lo) * 0.08;
+      const H = 168, m = { l: 12, r: 14, t: 34, b: 28 };
+      const x = d3.scaleLinear([lo - pad, hi + pad], [m.l, pw - m.r]);
+      const y = d3.scalePoint(MODELS, [m.t + 14, H - m.b - 8]);
+      const svg = svgEl(wrap, 'svg', { width: pw, height: H, viewBox: '0 0 ' + pw + ' ' + H, role: 'img', 'aria-label': title + ' no teste por modelo, com intervalo de 95 %' });
+      const t = svgEl(svg, 'text', { x: m.l, y: 14 }); t.textContent = title; t.style.fill = 'var(--color-fg)'; t.style.fontWeight = '600';
+      svgEl(svg, 'g', { transform: 'translate(0,' + (H - m.b) + ')' });
+      const ax = d3.select(svg).append('g').attr('transform', 'translate(0,' + (H - m.b + 4) + ')').call(d3.axisBottom(x).ticks(3).tickFormat((v) => pt(v, k === 'brier' ? 2 : 2)).tickSize(3));
+      ax.selectAll('path,line').style('stroke', 'var(--cds-chart-axis)');
+      const rx = x(ref.ponto);
+      const rl = svgEl(svg, 'line', { x1: rx, x2: rx, y1: m.t - 4, y2: H - m.b + 4 });
+      rl.style.stroke = 'var(--cds-chart-reference)'; rl.setAttribute('stroke-dasharray', '4 3'); rl.setAttribute('stroke-width', '1');
+      mark(rl, 'ci_metrics', 'ponto', 'modelo=' + enc('Referência') + '&metrica=' + k);
+      const rt = svgEl(svg, 'text', { x: Math.min(Math.max(rx, m.l + 30), pw - m.r - 30), y: 27, 'text-anchor': 'middle' }); rt.textContent = refWord + ' ' + pt(ref.ponto);
+      MODELS.forEach((mn, i) => {
+        const r = rows[i], yy = y(mn), w = 'modelo=' + enc(mn) + '&metrica=' + k;
+        const ln = svgEl(svg, 'line', { x1: x(r.ic_baixo), x2: x(r.ic_alto), y1: yy, y2: yy, 'stroke-width': 2, 'stroke-linecap': 'round' });
+        ln.style.stroke = colorOf(i);
+        mark(ln, 'ci_metrics', 'ic_baixo', w);
+        const c = svgEl(svg, 'circle', { cx: x(r.ponto), cy: yy, r: 5 });
+        c.style.fill = colorOf(i); c.style.stroke = 'var(--color-bg)'; c.setAttribute('stroke-width', '2');
+        mark(c, 'ci_metrics', 'ponto', w);
+        const tx = svgEl(svg, 'text', { x: x(r.ponto), y: yy - 9, 'text-anchor': 'middle' }); tx.textContent = pt(r.ponto);
+      });
+    });
+  });
+
+  // ---------- decomposição
+  dash.draw('chart_steps', (box) => {
+    const d = ok('ablation');
+    if (!d) return fail(box, 'ablation');
+    const W = Math.max(280, box.clientWidth), H = 300, m = { l: 40, r: Math.min(130, W * 0.3), t: 16, b: 34 };
+    const lo = Math.min(0.5, ...d.map((r) => r.auc - (r.auc_dp || 0))), hi = Math.max(0.5, ...d.map((r) => r.auc + (r.auc_dp || 0)));
+    const x = d3.scalePoint(d3.range(6), [m.l + 8, W - m.r]);
+    const y = d3.scaleLinear([lo - 0.03, hi + 0.03], [H - m.b, m.t]);
+    box.replaceChildren();
+    const svg = svgEl(box, 'svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': 'AUC no teste por passo de correção, para os três modelos' });
+    const s = d3.select(svg);
+    s.append('g').attr('transform', 'translate(0,' + (H - m.b) + ')').call(d3.axisBottom(x).tickFormat((v) => 'S' + v).tickSize(3)).call((g) => g.selectAll('path,line').style('stroke', 'var(--cds-chart-axis)'));
+    s.append('g').attr('transform', 'translate(' + m.l + ',0)').call(d3.axisLeft(y).ticks(5).tickFormat((v) => pt(v)).tickSize(-(W - m.l - m.r))).call((g) => { g.select('.domain').remove(); g.selectAll('line').style('stroke', 'var(--cds-chart-grid)'); });
+    const r5 = svgEl(svg, 'line', { x1: m.l, x2: W - m.r, y1: y(0.5), y2: y(0.5), 'stroke-dasharray': '4 3' });
+    r5.style.stroke = 'var(--cds-chart-reference)';
+    const rt = svgEl(svg, 'text', { x: m.l + 4, y: y(0.5) - 5 }); rt.textContent = 'acaso 0,50';
+    const ends = [];
+    MODELS.forEach((mn, i) => {
+      const pts = d.filter((r) => r.modelo === mn).sort((a, b) => a.passo_ordem - b.passo_ordem);
+      const line = d3.line().x((r) => x(r.passo_ordem)).y((r) => y(r.auc));
+      const p = svgEl(svg, 'path', { d: line(pts), fill: 'none', 'stroke-width': 2, 'stroke-linejoin': 'round' });
+      p.style.stroke = colorOf(i);
+      pts.forEach((r) => {
+        const w = 'modelo=' + enc(mn) + '&passo_ordem=' + r.passo_ordem;
+        if (r.auc_dp) {
+          const eb = svgEl(svg, 'line', { x1: x(r.passo_ordem), x2: x(r.passo_ordem), y1: y(r.auc - r.auc_dp), y2: y(r.auc + r.auc_dp), 'stroke-width': 1.5, opacity: 0.55 });
+          eb.style.stroke = colorOf(i);
+        }
+        const c = svgEl(svg, 'circle', { cx: x(r.passo_ordem), cy: y(r.auc), r: 4.5 });
+        c.style.fill = colorOf(i); c.style.stroke = 'var(--color-bg)'; c.setAttribute('stroke-width', '2');
+        mark(c, 'ablation', 'auc', w);
+      });
+      const last = pts[pts.length - 1];
+      ends.push({ name: mn, y: y(last.auc), i });
+    });
+    ends.sort((a, b) => a.y - b.y);
+    for (let k = 1; k < ends.length; k++) if (ends[k].y - ends[k - 1].y < 15) ends[k].y = ends[k - 1].y + 15;
+    ends.forEach((e) => {
+      const t = svgEl(svg, 'text', { x: W - m.r + 10, y: e.y + 4 }); t.textContent = e.name; t.style.fill = 'var(--color-fg)';
+    });
+  });
+
+  // ---------- prevalência
+  dash.draw('chart_prev', (box) => {
+    const d = ok('prevalence');
+    if (!d) return fail(box, 'prevalence');
+    const lab = { treino: 'Treino', validacao: 'Validação', teste: 'Teste' };
+    const W = Math.max(280, box.clientWidth), H = 240, m = { l: 40, r: 10, t: 34, b: 30 };
+    const x0 = d3.scaleBand(d.map((r) => r.conjunto), [m.l, W - m.r]).paddingInner(0.3).paddingOuter(0.1);
+    const x1 = d3.scaleBand(['alvo_original', 'alvo_formal'], [0, x0.bandwidth()]).padding(0.12);
+    const y = d3.scaleLinear([0, Math.max(...d.map((r) => Math.max(r.alvo_original, r.alvo_formal))) * 1.12], [H - m.b, m.t]);
+    box.replaceChildren();
+    const svg = svgEl(box, 'svg', { width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img', 'aria-label': 'Participação de positivos por conjunto, alvo original e alvo formal' });
+    const s = d3.select(svg);
+    s.append('g').attr('transform', 'translate(' + m.l + ',0)').call(d3.axisLeft(y).ticks(4).tickFormat((v) => d3.format('.0%')(v)).tickSize(-(W - m.l - m.r))).call((g) => { g.select('.domain').remove(); g.selectAll('line').style('stroke', 'var(--cds-chart-grid)'); });
+    s.append('g').attr('transform', 'translate(0,' + (H - m.b) + ')').call(d3.axisBottom(x0).tickFormat((v) => lab[v] || v).tickSize(0)).call((g) => g.select('.domain').style('stroke', 'var(--cds-chart-axis)'));
+    const cols = { alvo_original: 'var(--cds-chart-muted)', alvo_formal: colorOf(0) };
+    d.forEach((r) => ['alvo_original', 'alvo_formal'].forEach((k) => {
+      const bx = x0(r.conjunto) + x1(k), by = y(r[k]), bh = H - m.b - by;
+      const rect = svgEl(svg, 'rect', { x: bx, y: by, width: x1.bandwidth(), height: bh, rx: 3 });
+      rect.style.fill = cols[k];
+      mark(rect, 'prevalence', k, 'conjunto=' + enc(r.conjunto));
+      const t = svgEl(svg, 'text', { x: bx + x1.bandwidth() / 2, y: by - 5, 'text-anchor': 'middle' }); t.textContent = pct(r[k]);
+    }));
+    [['Alvo original', cols.alvo_original], ['Alvo formal', cols.alvo_formal]].forEach(([name, c], i) => {
+      const g = svgEl(svg, 'g', { transform: 'translate(' + (m.l + i * 120) + ',8)' });
+      const sw = svgEl(g, 'rect', { width: 10, height: 10, rx: 2, y: -1 }); sw.style.fill = c;
+      const t = svgEl(g, 'text', { x: 15, y: 8 }); t.textContent = name;
+    });
+  });
+
+  // ---------- tabelas
+  const cell = (tr, text) => { tr.appendChild(el('td', null, text)); };
+  dash.draw('recon_body', (tb) => {
+    const d = ok('recon');
+    if (!d) { tb.replaceChildren(); return; }
+    tb.replaceChildren(...d.map((r) => {
+      const tr = el('tr');
+      tr.setAttribute('data-key', enc(r.modelo) + ',' + enc(r.metrica));
+      const int = r.metrica === 'Positivos no teste';
+      cell(tr, r.modelo); cell(tr, r.metrica);
+      cell(tr, int ? String(r.monografia) : pt(r.monografia, 3));
+      cell(tr, int ? String(r.reproduzido) : pt(r.reproduzido, 3));
+      cell(tr, String(r.sementes));
+      return tr;
+    }));
+  });
+  dash.draw('split_body', (tb) => {
+    const d = ok('split');
+    if (!d) { tb.replaceChildren(); return; }
+    const lab = { fit: 'Treino', val: 'Validação', test: 'Teste', purge: 'Removidas (purge)' };
+    tb.replaceChildren(...d.map((r) => {
+      const tr = el('tr');
+      tr.setAttribute('data-key', enc(r.bloco));
+      cell(tr, lab[r.bloco] || r.bloco); cell(tr, String(r.n)); cell(tr, r.primeira_decisao); cell(tr, r.ultima_decisao);
+      cell(tr, String(r.positivos)); cell(tr, pct(r.taxa));
+      return tr;
+    }));
+  });
+})();
+</script>

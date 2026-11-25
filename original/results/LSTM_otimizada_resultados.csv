@@ -1,0 +1,2 @@
+﻿Modelo,Horizonte (Dias),Threshold Ótimo,Custo (validação),F1-Score,Precisão,Recall,AUC,Brier
+LSTM_otimizada,10,0.44,96,0.18867924528301888,0.5882352941176471,0.11235955056179775,0.605861012292628,0.1913430798502835

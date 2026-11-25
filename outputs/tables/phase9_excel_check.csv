@@ -1,0 +1,15 @@
+item,excel_formulas,python,dif_abs
+IDA base 100 final,153.8724479592284,153.8724479592284,0.0
+CDI base 100 final,147.55691047678712,147.55691047678735,2.2737367544323206e-13
+rf_seed42|estilo_original base 100 final,144.31305959290805,144.31305959290827,2.2737367544323206e-13
+rf_seed42|estilo_original trocas,42.0,42.0,0.0
+rf_seed42|estilo_original max drawdown,-0.005386101978662405,-0.005386101978662405,0.0
+rf_seed42|estilo_original conferências VERDADEIRO,815.0,815.0,0.0
+lstm_seed42|estilo_original base 100 final,155.5058808972775,155.50588089727816,6.536993168992922e-13
+lstm_seed42|estilo_original trocas,13.0,13.0,0.0
+lstm_seed42|estilo_original max drawdown,-0.00699124567552567,-0.006991245675525781,1.1102230246251565e-16
+lstm_seed42|estilo_original conferências VERDADEIRO,815.0,815.0,0.0
+lstm_seed42|valor base 100 final,153.15821710285152,153.15821710285172,1.9895196601282805e-13
+lstm_seed42|valor trocas,4.0,4.0,0.0
+lstm_seed42|valor max drawdown,-0.014157578104481372,-0.014157578104481816,4.440892098500626e-16
+lstm_seed42|valor conferências VERDADEIRO,815.0,815.0,0.0

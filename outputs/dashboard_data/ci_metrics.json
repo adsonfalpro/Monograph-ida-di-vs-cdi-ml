@@ -1,0 +1,110 @@
+{
+ "rows": [
+  {
+   "modelo": "Perceptron",
+   "metrica": "auc",
+   "ponto": 0.4103083151666148,
+   "ic_baixo": 0.2337024859241126,
+   "ic_alto": 0.6047906575255604,
+   "execucoes": 1
+  },
+  {
+   "modelo": "Perceptron",
+   "metrica": "brier",
+   "ponto": 0.1941906411446578,
+   "ic_baixo": 0.1106156291100052,
+   "ic_alto": 0.2863933079166531,
+   "execucoes": 1
+  },
+  {
+   "modelo": "Perceptron",
+   "metrica": "f1",
+   "ponto": 0.1732954545454545,
+   "ic_baixo": 0.0647609481719566,
+   "ic_alto": 0.2830064899523027,
+   "execucoes": 1
+  },
+  {
+   "modelo": "Random Forest",
+   "metrica": "auc",
+   "ponto": 0.5433427372817704,
+   "ic_baixo": 0.3973610544929138,
+   "ic_alto": 0.6881808621075177,
+   "execucoes": 5
+  },
+  {
+   "modelo": "Random Forest",
+   "metrica": "brier",
+   "ponto": 0.1676400794632069,
+   "ic_baixo": 0.1046506593971176,
+   "ic_alto": 0.237811115329755,
+   "execucoes": 5
+  },
+  {
+   "modelo": "Random Forest",
+   "metrica": "f1",
+   "ponto": 0.3434959349593496,
+   "ic_baixo": 0.1988950276243093,
+   "ic_alto": 0.4780578898225956,
+   "execucoes": 5
+  },
+  {
+   "modelo": "LSTM",
+   "metrica": "auc",
+   "ponto": 0.5439060582189899,
+   "ic_baixo": 0.4259540484806038,
+   "ic_alto": 0.6416696501365863,
+   "execucoes": 5
+  },
+  {
+   "modelo": "LSTM",
+   "metrica": "brier",
+   "ponto": 0.1717193247100318,
+   "ic_baixo": 0.0966765698544033,
+   "ic_alto": 0.2537635370595394,
+   "execucoes": 5
+  },
+  {
+   "modelo": "LSTM",
+   "metrica": "f1",
+   "ponto": 0.3434959349593496,
+   "ic_baixo": 0.1988950276243093,
+   "ic_alto": 0.4780578898225956,
+   "execucoes": 5
+  },
+  {
+   "modelo": "Referência",
+   "metrica": "auc",
+   "ponto": 0.5,
+   "ic_baixo": null,
+   "ic_alto": null,
+   "execucoes": 0
+  },
+  {
+   "modelo": "Referência",
+   "metrica": "brier",
+   "ponto": 0.1643629794120968,
+   "ic_baixo": null,
+   "ic_alto": null,
+   "execucoes": 0
+  },
+  {
+   "modelo": "Referência",
+   "metrica": "f1",
+   "ponto": 0.3434959349593496,
+   "ic_baixo": null,
+   "ic_alto": null,
+   "execucoes": 0
+  }
+ ],
+ "meta": [
+  {
+   "label": "Gerado por",
+   "value": "src/evaluation/evaluate.py (bootstrap em blocos de 20 dias, 1000 reamostragens)"
+  },
+  {
+   "label": "Origem",
+   "value": "outputs/tables/phase8_metrics_ci.csv"
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+,value
+first_valid_row,59
+sample_start_row,59
+nan_in_sample,0
+n_windows_with_target,4072
+agg_shape,"(4072, 120)"
+undefined_stats_set_to_0,874
+rsi_windows_without_losses,0
+orig_rsi_nan_rows,14
+train_end_decision_date,2019-05-16

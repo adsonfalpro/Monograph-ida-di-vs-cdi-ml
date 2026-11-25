@@ -1,0 +1,46 @@
+{
+ "rows": [
+  {
+   "bloco": "fit",
+   "n": 2434,
+   "primeira_decisao": "2009-08-21",
+   "ultima_decisao": "2019-05-03",
+   "positivos": 80,
+   "taxa": 0.0328677074774034
+  },
+  {
+   "bloco": "val",
+   "n": 805,
+   "primeira_decisao": "2019-05-17",
+   "ultima_decisao": "2022-07-27",
+   "positivos": 122,
+   "taxa": 0.1515527950310559
+  },
+  {
+   "bloco": "test",
+   "n": 815,
+   "primeira_decisao": "2022-08-10",
+   "ultima_decisao": "2025-11-05",
+   "positivos": 169,
+   "taxa": 0.207361963190184
+  },
+  {
+   "bloco": "purge",
+   "n": 18,
+   "primeira_decisao": "2019-05-06",
+   "ultima_decisao": "2022-08-09",
+   "positivos": 0,
+   "taxa": 0.0
+  }
+ ],
+ "meta": [
+  {
+   "label": "Gerado por",
+   "value": "src/validation/build_split.py"
+  },
+  {
+   "label": "Origem",
+   "value": "outputs/tables/split_summary.csv"
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+# ---- dados: nada de data/ vai para o repositório, exceto data/README.md (ver esse arquivo)
+data/*
+!data/README.md
+
+# ---- derivados que contêm as séries diárias da ANBIMA (reproduzíveis a partir dos dados; não publicar)
+original/results/alertas_*_original.xlsx
+outputs/backtest_check.xlsx
+outputs/tables/target_comparison_by_window.csv
+outputs/tables/ida_return_vs_index_mismatch.csv
+
+# ---- texto da monografia: fora desta publicação por ora
+thesis/
+*.aux
+*.log
+*.bbl
+*.blg
+*.toc
+*.lof
+*.lot
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+
+# ---- modelos treinados (regeneráveis com src/models/train_all.py)
+outputs/models/
+
+# ---- ambientes e caches
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# ---- rascunhos da monografia (não fazem parte do repositório público)
+docs/monografia_trechos_revisados*.docx
+outputs/monografia/
+src/report/build_monografia_docx.py
+src/report/make_numbers.py
+err.txt

@@ -1,0 +1,7 @@
+* text=auto
+*.png binary
+*.xls binary
+*.xlsx binary
+*.npz binary
+*.keras binary
+*.joblib binary

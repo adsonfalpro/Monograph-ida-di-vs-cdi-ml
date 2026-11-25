@@ -1,0 +1,13 @@
+variavel_original,variavel_nova,max_abs_diff_total,max_abs_diff_apos_150_linhas,linhas_dif_gt_1e9,primeiras_20_linhas_NaN_no_original_zeradas
+IDA_DI,ida_ret,0.0,0.0,0,False
+Duration,duration,0.0,0.0,0,False
+IPCA_Deb,ipca_deb_ret,4.440892098500626e-16,4.440892098500626e-16,0,False
+BOVA,ibov_ret,0.0,0.0,0,False
+CDI_dia,cdi_ret,0.0,0.0,0,False
+Excesso_dia,excesso_dia,0.0,0.0,0,False
+vol_20,vol_20,7.025291264527167e-18,7.025291264527167e-18,0,True
+trend_20,trend_20,1.0842021724855044e-19,0.0,0,True
+ret_20,ret_20,8.673617379884035e-19,0.0,0,True
+rsi_14,rsi_14,2.7000623958883807e-13,2.7000623958883807e-13,0,True
+macd,macd,1.5472624917765854e-05,2.189485734643143e-10,131,False
+macd_signal,macd_signal,2.129772612815071e-05,3.219821013544094e-10,136,False
